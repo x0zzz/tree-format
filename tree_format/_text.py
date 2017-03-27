@@ -72,13 +72,13 @@ def _format_tree(node, format_node, get_children, prefix=u''):
             yield result
 
 
-def format_tree(node, format_node, get_children):
+def format_tree(node, format_node, get_children, join_lines=True):
     lines = itertools.chain(
         [format_node(node)],
         _format_tree(node, format_node, get_children),
         [u''],
     )
-    return u'\n'.join(lines)
+    return u'\n'.join(lines) if join_lines else lines
 
 
 def print_tree(*args, **kwargs):
